@@ -75,4 +75,4 @@ npm run dev
 
 ---
 
-**Built for CODEZEN 2026 · Team DataCrafters**
+**Built for CODEZEN 2026 · Team IOSTREAM**
