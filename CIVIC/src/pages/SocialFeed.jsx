@@ -6,7 +6,7 @@ import { useState, useEffect, useRef } from "react"
 import { Wifi, CheckCircle, XCircle, Zap, RefreshCw, Filter, AlertCircle } from "lucide-react"
 import { classifyComplaint } from "../hooks/useAIClassifier"
 
-const BACKEND_URL = "http://localhost:3001"
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:3001"
 
 // Mock posts — all Reddit style (used when backend is offline)
 const MOCK_POSTS = [

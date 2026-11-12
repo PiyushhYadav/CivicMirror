@@ -9,7 +9,7 @@ import { departments } from "../data/mockComplaints"
 import { classifyComplaint } from "../hooks/useAIClassifier"
 import { detectFakeComplaint } from "../hooks/useFakeDetector"
 
-const BACKEND_URL = "http://localhost:3001"
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:3001"
 
 // Department → authority mapping (mirrors backend municipalDirectory)
 const DEPT_AUTHORITY = {
