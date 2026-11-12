@@ -1,9 +1,5 @@
 # Civic Mirror 🏙️
 
-[![Live Site](https://img.shields.io/badge/Live_Site-civicmirror.onrender.com-success?style=for-the-badge&logo=render)](https://civicmirror.onrender.com)
-[![Backend API](https://img.shields.io/badge/API_Service-civic--mirror--backend.onrender.com-blue?style=for-the-badge&logo=render)](https://civic-mirror-backend.onrender.com)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
-
 > **Civic Mirror** is a civic intelligence platform that ingests complaints from Reddit and social media, classifies urgency and municipal department with AI, geolocates issues, and automatically escalates them to local authorities.
 
 ---
@@ -12,7 +8,6 @@
 
 * 🖥️ **Live Web Application:** [https://civicmirror.onrender.com](https://civicmirror.onrender.com)
 * ⚙️ **Production Backend API:** [https://civic-mirror-backend.onrender.com](https://civic-mirror-backend.onrender.com)
-* 🩺 **Backend Health Endpoint:** [https://civic-mirror-backend.onrender.com/health](https://civic-mirror-backend.onrender.com/health)
 
 ---
 
@@ -107,5 +102,3 @@ This repository is deployed on **Render** under a monorepo structure:
 * **Graceful Fallbacks**: Fully functional in demo mode with synthetic data when credentials are not configured.
 
 ---
-
-**Built for CODEZEN 2026 · Team IOSTREAM**
