@@ -1,30 +1,42 @@
 # Civic Mirror 🏙️
 
-Civic Mirror is a platform designed to ingest civic complaints from Reddit, analyze them, and automatically escalate them to the appropriate municipal authorities. It bridges the gap between citizens reporting issues on social media and the actual problem resolution by local government bodies.
+[![Live Site](https://img.shields.io/badge/Live_Site-civicmirror.onrender.com-success?style=for-the-badge&logo=render)](https://civicmirror.onrender.com)
+[![Backend API](https://img.shields.io/badge/API_Service-civic--mirror--backend.onrender.com-blue?style=for-the-badge&logo=render)](https://civic-mirror-backend.onrender.com)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
+
+> **Civic Mirror** is a civic intelligence platform that ingests complaints from Reddit and social media, classifies urgency and municipal department with AI, geolocates issues, and automatically escalates them to local authorities.
+
+---
+
+## 🌐 Live Deployments
+
+* 🖥️ **Live Web Application:** [https://civicmirror.onrender.com](https://civicmirror.onrender.com)
+* ⚙️ **Production Backend API:** [https://civic-mirror-backend.onrender.com](https://civic-mirror-backend.onrender.com)
+* 🩺 **Backend Health Endpoint:** [https://civic-mirror-backend.onrender.com/health](https://civic-mirror-backend.onrender.com/health)
 
 ---
 
 ## 🛠️ Technologies Used
 
 ### Frontend (`CIVIC/`)
-The frontend is a modern, responsive React application built to provide an intuitive dashboard for users and authorities.
-- **React 19**
-- **Vite** (Build tool & development server)
-- **TailwindCSS** (Utility-first CSS framework for styling)
-- **React Router DOM** (Navigation)
-- **Recharts** (Data visualization & charts)
-- **Leaflet & React Leaflet** (Interactive map visualizations)
-- **jsPDF** (Generating complaint reports)
-- **Lucide React** (Iconography)
+A responsive, modern React application providing an interactive dashboard for citizens and administrators.
+* **React 19**
+* **Vite** (Build tool & development server)
+* **TailwindCSS** (Utility-first CSS styling)
+* **React Router DOM** (Client-side routing)
+* **Recharts** (Analytics and complaint metrics)
+* **Leaflet & React Leaflet** (Interactive geographic mapping)
+* **jsPDF** (Automated PDF incident report generation)
+* **Lucide React** (Modern UI icons)
 
 ### Backend (`CIVIC_BACKEND/`)
-The backend is a robust Node.js service responsible for fetching data, classifying urgency, geocoding, and managing complaints.
-- **Node.js & Express.js**
-- **Supabase** (Database & Authentication via `@supabase/supabase-js`)
-- **Axios** (HTTP client for fetching Reddit API)
-- **Nodemailer** (Automated email notifications to municipal authorities)
-- **dotenv** (Environment variables management)
-- **CORS & Express Rate Limit** (Security and rate limiting)
+A robust Node.js/Express service for social media ingestion, natural language classification, geocoding, and dispatch.
+* **Node.js & Express.js**
+* **Supabase** (PostgreSQL persistence via `@supabase/supabase-js`)
+* **Axios** (Reddit API queries)
+* **Nodemailer** (Automated email escalation to municipal authorities)
+* **Express Rate Limit & CORS** (API protection and cross-origin security)
+* **dotenv** (Configuration management)
 
 ---
 
@@ -33,45 +45,66 @@ The backend is a robust Node.js service responsible for fetching data, classifyi
 ```
 .
 ├── CIVIC/              # Frontend React application (Vite + Tailwind)
+│   ├── src/            # Components, pages, hooks, mock data
+│   └── .env.example    # Frontend environment config (VITE_BACKEND_URL)
 ├── CIVIC_BACKEND/      # Backend Express application (Node.js)
-└── README.md           # This file
+│   ├── src/            # Routes, services, middleware, municipal directory
+│   └── .env.example    # Backend environment config
+├── .gitignore          # Repository-level ignore rules
+└── README.md           # Documentation & deployment guide
 ```
 
 ---
 
-## 🚀 How to Run Locally
+## 🚀 Local Development Setup
 
 ### 1. Backend Setup
 ```bash
 cd CIVIC_BACKEND
 npm install
 
-# Copy the environment file and configure your credentials
+# Copy the sample environment file
 cp .env.example .env
 
 # Run the development server
 npm run dev
 ```
-*The backend will run at `http://localhost:3001`.*
+*The backend will run on `http://localhost:3001`.*
 
 ### 2. Frontend Setup
 ```bash
 cd CIVIC
 npm install
 
-# Start the frontend application
+# (Optional) specify backend URL in .env
+# VITE_BACKEND_URL=http://localhost:3001
+
+# Start the frontend dev server
 npm run dev
 ```
-*The frontend will be accessible at `http://localhost:5173`.*
+*The frontend will run on `http://localhost:5173`.*
 
 ---
 
-## 💡 Features
-- **Reddit API Integration**: Fetches complaints related to infrastructure (potholes, water leaks, etc.) directly from Reddit.
-- **AI Classification**: Automatically classifies the complaint's urgency and targets the correct department (e.g., PWD).
-- **Geocoding**: Extracts location details from text and plots them on interactive maps.
-- **Automated Notifications**: Sends emails to respective municipal zones and notifies citizens.
-- **Mock Mode**: Works seamlessly without credentials for demo purposes, logging outputs to the console.
+## ☁️ Deployment Architecture (Render)
+
+This repository is deployed on **Render** under a monorepo structure:
+
+| Component | Service Type | Root Directory | Build Command | Start/Publish | Environment Variables |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **Frontend** | Static Site | `CIVIC` | `npm run build` | `dist` | `VITE_BACKEND_URL=https://civic-mirror-backend.onrender.com` |
+| **Backend** | Web Service | `CIVIC_BACKEND` | `npm install` | `npm start` | `NODE_ENV=production`, `FRONTEND_URL=https://civicmirror.onrender.com` |
+
+*Single Page Application rewrite rule: `/*` → `/index.html` on the static site ensures direct route access.*
+
+---
+
+## 💡 Key Features
+* **Reddit Ingestion**: Fetches civic infrastructure complaints from Reddit feeds (authenticated or public).
+* **AI Categorization**: Automatically detects urgency levels and matches incidents with respective departments (PWD, Jal Board, Sanitation, etc.).
+* **Geocoding & Interactive Map**: Visualizes reported civic issues geographically.
+* **Automated Escalation**: Generates incident packages and emails appropriate municipal officials with citizen notifications.
+* **Graceful Fallbacks**: Fully functional in demo mode with synthetic data when credentials are not configured.
 
 ---
 
